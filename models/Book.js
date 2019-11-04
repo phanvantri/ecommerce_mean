@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var BookSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({
   isbn: String,
   title: String,
   author: String,
   description: String,
   published_year: String,
   publisher: String,
-  updated_date: { type: Date, default: Date.now },
+ 
 });
 
-module.exports = mongoose.model('Book', BookSchema);
+const Book= module.exports = mongoose.model('books', BookSchema);
