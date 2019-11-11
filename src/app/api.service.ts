@@ -7,6 +7,8 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 const apiUrl = "/api";
+const apicategory="/apicategory";
+const apiproduct="/apiproduct";
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +36,19 @@ export class ApiService {
     let body = res;
     return body || { };
   }
+  //category
+  getCategory(): Observable<any>{
+    return this.http.get(apicategory,httpOptions).pipe(map(this.extractData),catchError(this.handleError));
+  }
 
-  getBooks(): Observable<any> {
+  //product
+  getProduct(): Observable<any>{
+    return this.http.get(apiproduct,httpOptions).pipe(map(this.extractData),catchError(this.handleError));
+  }
+
+  //
+
+  getBooks(): Observable<any> {   
     return this.http.get(apiUrl, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));

@@ -6,7 +6,7 @@ var CategorySchema = new mongoose.Schema({
     dateadd: String,
     dateupdate: String,
     linkimage: String,
-    // updated_date: { type: Date, default: Date.now },
+    
   });
   
   module.exports = mongoose.model('category', CategorySchema);

@@ -5,38 +5,29 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 
 var mongoose = require('mongoose');
-//connect với mongodb
-mongoose.connect('mongodb://localhost:27017/ecommerce')
+mongoose.connect('mongodb://localhost/ecommerce')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
-  //check connect
-  mongoose.connection.on('connected',()=>{
-    console.log("Connected to database mongodb @27017");
-  });
-  mongoose.connection.on('error',(err)=>{
-      if(err){
-        console.log('Error database connected:'+err);
-      }
-  });
-
-  
- 
-
 var apiRouter = require('./routes/book');
+var categoryRouter = require('./routes/categoryRouter');
+var productRouter = require('./routes/productRouter');
 
 var app = express();
-
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/books', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/category', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-details/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-create', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-edit/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/users',express.static(path.join(__dirname,'dist/mean-angular6')));
+app.use('/product-detail/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
+app.use('/apicategory',categoryRouter);
+app.use('/apiproduct',productRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

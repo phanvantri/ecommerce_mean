@@ -21,6 +21,15 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule } from "@angular/material";
+import { ProductComponent } from './product-view/product/product.component';
+import { ProductCreateComponent } from './product-view/product-create/product-create.component';
+import { ProductDetailComponent } from './product-view/product-detail/product-detail.component';
+import { ProductEditComponent } from './product-view/product-edit/product-edit.component';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CategoryComponent } from './category-view/category/category.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   {
@@ -44,9 +53,26 @@ const appRoutes: Routes = [
     data: { title: 'Edit Book' }
   },
   { path: '',
-    redirectTo: '/books',
-    pathMatch: 'full'
+    component: HomeComponent,
+    data: { title: 'Home' }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
+  },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    data: { title: 'Danh muc' }
+  },
+  
+  {
+    path: 'product-detail/:id',
+    component: ProductDetailComponent,
+    data: { title: 'Chi tiết sản phẩm' }
   }
+  
 ];
 
 @NgModule({
@@ -55,7 +81,16 @@ const appRoutes: Routes = [
     BookComponent,
     BookDetailComponent,
     BookCreateComponent,
-    BookEditComponent
+    BookEditComponent,
+    ProductComponent,
+    ProductCreateComponent,
+    ProductDetailComponent,
+    ProductEditComponent,
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    CategoryComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
