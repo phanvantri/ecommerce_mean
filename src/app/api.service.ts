@@ -46,7 +46,13 @@ export class ApiService {
     return this.http.get(apiproduct,httpOptions).pipe(map(this.extractData),catchError(this.handleError));
   }
 
-  //
+  //product_detail
+  getProduct_Detail(id: string):Observable<any>{
+    const url = `${apiproduct}/${id}`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
 
   getBooks(): Observable<any> {   
     return this.http.get(apiUrl, httpOptions).pipe(
@@ -83,4 +89,5 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
+  
 }

@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ecommerce')
   .then(() =>  console.log('connection succesful'))
@@ -13,17 +12,58 @@ var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 
 var app = express();
+//login thuong
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
+var User = require('./models/User');
+ app.use(bodyParser.json());
+// app.use(expressJwt({secret: 'todo-app-super-shared-secret'}).unless({path: ['/api/auth']}));
+
+app.post('/api/auth', function(req, res) {
+  const body = req.body;
+  console.log(body);
+  User.findOne({username:body.username},function (err, user) {
+    console.log(user);
+    if (err) return next(err)
+    else if (user) {
+      if(!user || body.password != user.password) return res.sendStatus(401);
+      var token = jwt.sign({userID: user.id}, 'todo-app-super-shared-secret', {expiresIn: '2h'});
+      res.send({token});
+    }
+    }); 
+});
+
+//test login google
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('./config/key_google');
+const cookieSession = require('cookie-session');
+var User = require('./models/User');
+require('./services/passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./routes/authRouter')(app);
+
+
+
+//
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/login', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/register', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/user-info', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/books', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/category', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-details/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-create', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/book-edit/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/product-detail/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/mycart', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
 app.use('/apiproduct',productRouter);

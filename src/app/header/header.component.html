@@ -1,3 +1,9 @@
+<!-- <nav class="nav nav-pills">
+  <a class="nav-link" routerLink="todos" routerLinkActive="active" *ngIf="auth.loggedIn">Todo List</a>
+  <a class="nav-link" routerLink="users" routerLinkActive="active" *ngIf="auth.loggedIn">Users</a>
+  <a class="nav-link" routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Login</a>
+  <a class="nav-link" (click)="logout()" href="#" *ngIf="auth.loggedIn">Logout</a>
+</nav> -->
 <div class="header">
     <div class="wrap">
   <div class="header_top">
@@ -19,43 +25,28 @@
       <a class="toggleMenu" href="#">Menu</a>
     <ul class="nav">
       <li>
-        <a href="index.html">Trang chủ</a>
+        <a href="#">Trang chủ</a>
       </li>
       <li  class="test">
         <a href="#">Giới thiệu</a>
       </li>
       <li>
         <a href="#">Khuyến mãi</a>
-        <ul>
-          <li>
-            <a href="#">Laptops</a>
-            <ul>
-              <li><a href="#">HP</a></li>
-              <li><a href="#">Lenova</a></li>
-              <li><a href="#">Dell</a></li>
-              <li><a href="#">All Brands</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Computer Accessories</a>
-            <ul>
-              <li><a href="#">External Hard Disks</a></li>
-              <li><a href="#">Pendrives</a></li>
-              <li><a href="#">PC Components</a></li>
-              <li><a href="#">Computer Peripherals</a></li>
-              <li><a href="#">Datacards & Routers</a></li>
-              <li><a href="#">Mouse</a></li>
-              <li><a href="#">Laptop Skins & Decals</a></li>
-            </ul>
-          </li>
-        </ul>
       </li>
       <li>
-        <a href="#">Đăng nhập</a>
+        <a routerLink="user-info" routerLinkActive="active" *ngIf="auth.loggedIn">Thông tin cá nhân</a>  
+      </li>
+      <li>   
+         <a routerLink="mycart"routerLinkActive="active" *ngIf="auth.loggedIn">Giỏ hàng</a>  
+        </li>
+      <li>
+        <a routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Đăng nhập</a>
+        
+        <a class="nav-link" (click)="logout()" href="#" *ngIf="auth.loggedIn">Đăng xuất</a>
       
       </li>
       <li>
-        <a href="#">Đăng kí</a>
+        <a routerLink="register" routerLinkActive="active" *ngIf="!auth.loggedIn">Đăng kí</a>
        
       </li>
     

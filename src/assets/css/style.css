@@ -599,7 +599,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  }
  .product-articles p a{
      color:#e44f2b;
-     font-size;14px;
+     font-size: 14px;
  }
  .product-articles p a:hover{
      text-decoration:underline;
@@ -795,9 +795,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  .share-desc{
      margin-bottom:15px;
  }
- .share{
-     float:left;
- }
+ 
+
  .share p {
      padding-top: 10px;
      font-size:13px;
@@ -945,9 +944,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      line-height: 1.8em;
      font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
  }
- .span_3_of_2 .button {
-     float: right;
- }
+
  .span_3_of_2 .button a {
      font-size:0.85em;
      display: block;
@@ -963,7 +960,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  }
  .span_3_of_2 .button a:hover {
       text-shadow: 0px 0px 1px #000;
-       background:#292929;
+       background:0
  }
  .popular-products li:first-child{
      margin-top:0;
@@ -1038,8 +1035,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
      margin-top: 15px;
      line-height: 3em;
  }
+
  .span_3_of_2 .button {
-     float: right;
      margin-top: 1%;
  }
  .product-tags .button a {
@@ -1528,3 +1525,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
  }
  
+ .product-details div img{
+    width: 100%;
+    height: auto;
+ }
+
+ #add-one{
+    display: inline;
+ }
+ .add-one{
+    background: #e44f2b;
+    text-decoration: none !important;
+    color: #fff !important;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+ }
+
+ .add-one:hover{
+    background: #fc3e0f;
+ }

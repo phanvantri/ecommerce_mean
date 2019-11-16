@@ -20,7 +20,7 @@ export class BookDetailComponent implements OnInit {
   getBookDetails(id) {
     this.api.getBook(id)
       .subscribe(data => {
-        console.log(data);
+       // console.log(data);
         this.book = data;
       });
   }

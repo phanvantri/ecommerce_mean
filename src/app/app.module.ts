@@ -10,6 +10,12 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// login jwt
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './api/auth.guard';
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 import {
   MatInputModule,
@@ -30,6 +36,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoryComponent } from './category-view/category/category.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { InfoUserComponent } from './user-view/info-user/info-user.component';
+import { CartComponent } from './cart-view/cart/cart.component';
+
 
 const appRoutes: Routes = [
   {
@@ -62,6 +72,11 @@ const appRoutes: Routes = [
     data: { title: 'Login' }
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+    data: { title: 'Đăng kí' }
+  },
+  {
     path: 'category',
     component: CategoryComponent,
     data: { title: 'Danh muc' }
@@ -71,6 +86,19 @@ const appRoutes: Routes = [
     path: 'product-detail/:id',
     component: ProductDetailComponent,
     data: { title: 'Chi tiết sản phẩm' }
+  },
+  
+  {
+    path: 'user-info',
+    component: InfoUserComponent,
+    canActivate: [AuthGuard],//phai dang nhap moi vao dc trang
+    data: { title: 'Thông tin User' }
+  },
+  {
+    path: 'mycart',
+    component: CartComponent,
+    canActivate: [AuthGuard],//phai dang nhap moi vao dc trang
+    data: { title: 'Thông tin User' }
   }
   
 ];
@@ -90,7 +118,11 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     CategoryComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    InfoUserComponent,
+    CartComponent
+   
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -107,7 +139,15 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+     // Add this import here
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:3000'],
+        blacklistedRoutes: ['localhost:3000/api/auth']
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

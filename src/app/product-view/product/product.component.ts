@@ -3,6 +3,7 @@ import { ApiService } from '../../api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,7 +18,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.api.getProduct()
     .subscribe(res => {
-      console.log(res);
+      
       this.products = res;
     }, err => {
       console.log(err);
