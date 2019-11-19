@@ -9,13 +9,24 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
-
+  info={};
   logout() {
     this.auth.logout();
     this.router.navigate(['login']);
   }
 
   ngOnInit() {
+    this.getInforUser();
+  }
+  getInforUser() {
+        if(this.auth.loggedIn){
+        this.auth.getInforUser()
+        .subscribe(data => {
+          this.info=data;
+          console.log(data);
+
+        });
+      }
   }
 
 }

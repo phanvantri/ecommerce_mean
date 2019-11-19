@@ -39,6 +39,9 @@
       <li>   
          <a routerLink="mycart"routerLinkActive="active" *ngIf="auth.loggedIn">Giỏ hàng</a>  
         </li>
+        <li>   
+          <a  *ngIf="auth.loggedIn">{{info.name}}</a>  
+         </li>
       <li>
         <a routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Đăng nhập</a>
         

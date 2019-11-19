@@ -29,14 +29,12 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser);
       }
-      console.log(profile.id);
-      console.log(profile.emails[0].value);
-      console.log(accessToken);
       const user = await new User({
-
+        _id: new mongoose.Types.ObjectId(),
         googleId: profile.id,
         email: profile.emails[0].value,
-        name: profile.name.familyName + ' ' + profile.name.givenName
+        name: profile.name.familyName + ' ' + profile.name.givenName,
+        password: accessToken
       }).save();
 
       done(null, user);

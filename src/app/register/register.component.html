@@ -11,13 +11,15 @@
 
   <div class="container">
       <label for="uname"><b>Tên đăng nhập</b></label>
-      <input type="text" placeholder="Nhập tên đăng nhập..." name="uname" required [(ngModel)]="username">
+      <input type="text" placeholder="Nhập tên đăng nhập..." name="uname" required [(ngModel)]="name">
   
+      <label for="em"><b>Email</b></label>
+      <input type="text" placeholder="Nhập Email..." name="em" required  required [(ngModel)]="email">
+
       <label for="psw"><b>Mật khẩu</b></label>
       <input type="password" placeholder="Nhập mật khẩu..." name="psw" required [(ngModel)]="password" >
 
-      <label for="em"><b>Email</b></label>
-      <input type="text" placeholder="Nhập Email..." name="em" required  >
+     
 
     <button type="submit">Đăng kí</button>
   </div>

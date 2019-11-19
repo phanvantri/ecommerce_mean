@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public username: string;
+  public email: string;
   public password: string;
   public error: string;
 
@@ -17,9 +17,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+  loginGoogle(){
+    this.auth.loginGoogle()
+    .pipe(first())
+    .subscribe(
+      result => this.router.navigate(['']),
+      err => this.error = 'Could not authenticate'
+    );
+  }
+  
   public submit() {
+    console.log(this.password);
+    console.log(this.email);
    
-    this.auth.login(this.username, this.password)
+    this.auth.login(this.email, this.password)
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['']),

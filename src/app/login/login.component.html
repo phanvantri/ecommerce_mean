@@ -1,33 +1,30 @@
 <h4 *ngIf="error">{{error}}</h4>
-<form (ngSubmit)="submit()" class="form-login">
-    <div class="imgcontainer">
-        <h3>Đăng nhập</h3>
-    </div>
-    
-    <div class="imgcontainer">
-      <a [routerLink]="['/']">
-        <img src="https://res.cloudinary.com/teepublic/image/private/s--qTzgPjhE--/t_Preview/b_rgb:6e2229,c_limit,f_jpg,h_630,q_90,w_630/v1524793004/production/designs/2632126_0.jpg" alt="Avatar" class="avatar">
-     </a>
-    </div>
-  
-    <div class="container">
-      <label for="uname"><b>Tên đăng nhập</b></label>
-      <input type="text" placeholder="Nhập tên đăng nhập..." name="uname" required [(ngModel)]="username">
-  
-      <label for="psw"><b>Mật khẩu</b></label>
-      <input type="password" placeholder="Nhập mật khẩu..." name="psw" required [(ngModel)]="password" >
-  
-      <button type="submit">Đăng nhập</button>
-      <!-- <a href="http://localhost:3000/auth/google" >Login to Google</a> -->
-      <button type="submit">Đăng nhập từ Google</button>
-      <button type="submit">Đăng nhập từ Facebook</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Ghi nhớ mật khẩu
-      </label>
-    </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
+<div id="logreg-forms">
+    <form class="form-signin" (ngSubmit)="submit()">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
+        <div class="social-login">
+          <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </a>
+            
+            </div>
+            <div class="col-md-6">
+                <a href="/auth/google" class="btn google-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </a>
+            </div>
+              
+          </div>
+        </div>
+        <p style="text-align:center"> OR  </p>
+       
+        <input type="text" class="form-control" placeholder="Nhập tên đăng nhập..." name="uname" required [(ngModel)]="email">    
+        <input type="password"  class="form-control" placeholder="Nhập mật khẩu..." name="psw" required [(ngModel)]="password" >
+        <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
+        <a href="#" id="forgot_pswd">Forgot password?</a>
+        <hr>
+        <!-- <p>Don't have an account!</p>  -->
+        <a [routerLink]="['/register']" class="btn btn-primary btn-block" type="button" id="btn-signup">Đăng kí tài khoản</a>
+        </form>
+
+        <br>
+        
+</div>
