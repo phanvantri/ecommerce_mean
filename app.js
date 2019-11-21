@@ -11,6 +11,7 @@ var apiRouter = require('./routes/book');
 var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 var userRouter = require('./routes/userRouter');
+var orderRouter= require('./routes/orderRouter');
 
 var app = express();
 //test login google
@@ -18,10 +19,11 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./config/key_google');
 const cookieSession = require('cookie-session');
-var User = require('./models/User');
+
 require('./services/passport');
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 require('./routes/authRouter')(app);
 
@@ -47,6 +49,7 @@ app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
 app.use('/apiproduct',productRouter);
 app.use('/auth',userRouter);
+app.use('/apiorder',orderRouter);
 
 
 // catch 404 and forward to error handler

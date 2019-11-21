@@ -9,6 +9,7 @@ const httpOptions = {
 const apiUrl = "/api";
 const apicategory="/apicategory";
 const apiproduct="/apiproduct";
+const apiorder="/apiorder";
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,11 @@ export class ApiService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+  getOrders(): Observable<any> {   
+    return this.http.get(apiorder, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
   
 }

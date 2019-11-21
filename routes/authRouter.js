@@ -8,6 +8,7 @@ module.exports = (app) => {
   app.get('/auth/google/callback',
     passport.authenticate('google'),
     (req, res) => {
+ 
        return res.status(200).json({
               message: "Auth successful",
               token: req.user.password

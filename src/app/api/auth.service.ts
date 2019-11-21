@@ -34,10 +34,12 @@ export class AuthService {
   }
 
   loginGoogle(): Observable<boolean> {
+    
   
-    return this.http.post<{token: string}>('/auth/google', {})
+    return this.http.get<{token: string}>('/auth/google', {})
       .pipe(
         map(result => {
+          console.log(result);
           localStorage.setItem('access_token', result.token);
           return true;
         })
