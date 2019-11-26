@@ -12,6 +12,7 @@ const auth="/auth";
   providedIn: 'root'
 })
 export class AuthService {
+ 
   constructor(private http: HttpClient) { }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -41,22 +42,25 @@ export class AuthService {
         map(result => {
           console.log(result);
           localStorage.setItem('access_token', result.token);
+         
           return true;
         })
       );
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>('/auth/login', {email: email, password: password})
+    return this.http.post<{token: string,username:string,id:string}>('/auth/login', {email: email, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
+          localStorage.setItem('user', result.username);
+          localStorage.setItem('id', result.id);
+         
           return true;
         })
       );
   }
   signup(email: string, password: string,name: string): Observable<boolean> {
-    console.log("cp");
     return this.http.post<{token: string}>('/auth/signup', {email: email, password: password, name:name})
       .pipe(
         map(result => {        
@@ -66,18 +70,23 @@ export class AuthService {
   }
    //info user
    getInforUser(): Observable<any> {
-    return this.http.post<{token: string}>('/auth/infor', {token: localStorage.getItem('access_token')})
+    
+     return this.http.post<{}>('/auth/infor', {id: localStorage.getItem('id')})
       .pipe(
         map(result => {
+          console.log(result);
           return result;
         })
       );
   }
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('id');
   }
 
   public get loggedIn(): boolean {
+  
     return (localStorage.getItem('access_token') !== null);
   }
 }

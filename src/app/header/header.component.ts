@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
   info={};
+  username={};
   logout() {
     this.auth.logout();
     this.router.navigate(['login']);
@@ -17,14 +18,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getInforUser();
+    console.log(localStorage.getItem('user'));
+    this.username=localStorage.getItem('user');
   }
   getInforUser() {
         if(this.auth.loggedIn){
         this.auth.getInforUser()
         .subscribe(data => {
           this.info=data;
-          console.log(data);
-
+         
         });
       }
   }

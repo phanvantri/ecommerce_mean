@@ -4,7 +4,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ecommerce')
+mongoose.connect('mongodb+srv://root:123@ecommerce-yzccg.mongodb.net/ecommerce?retryWrites=true&w=majority')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 var apiRouter = require('./routes/book');

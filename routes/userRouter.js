@@ -86,9 +86,13 @@ router.post("/signup", (req, res, next) => {
                 }
               
             );
+              
             return res.status(200).json({
               message: "Auth successful",
-              token: token
+              token: token,
+              username:user[0].name,
+              id: user[0]._id
+
             });
           }
           res.status(401).json({
@@ -120,9 +124,24 @@ router.post("/signup", (req, res, next) => {
       });
   });
   router.post("/infor", (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const decoded= jwt.verify(token, 'todo-app-super-shared-secret');
-    res.json(decoded);
-   
+
+    console.log(req.body.id);
+    User.findById(req.body.id, function (err, user) {
+      if (err) return next(err);
+      res.json(user);
+    });
+    // User.find({ email: req.body.email })
+    // .exec()
+    // .then(user => {
+    //   res.json(user);
+     
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   res.status(500).json({
+    //     error: err
+    //   });
+    // });
   });
+
   module.exports = router;

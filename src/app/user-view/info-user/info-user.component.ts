@@ -18,7 +18,7 @@ export class InfoUserComponent implements OnInit {
         if(this.auth.loggedIn){
         this.auth.getInforUser()
         .subscribe(data => {
-          this.info=data;
+          this.info=data;   
         });
       }
   }

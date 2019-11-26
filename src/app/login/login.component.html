@@ -4,12 +4,12 @@
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
         <div class="social-login">
           <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </a>
+            <div class="col-md-6 pl-3 pr-0">
+                <a href="/auth/facebook" class="btn facebook-btn social-btn" type="button"><span><i class="fa fa-facebook mr-2 d-inline"></i> Sign in with Facebook</span> </a>
             
             </div>
-            <div class="col-md-6">
-                <a  (click)="loginGoogle()" class="btn google-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Google</span> </a>
+            <div class="col-md-6 pl-0">
+                <a href="/auth/google" class="btn google-btn social-btn" type="button"><span><i class="fa fa-google mr-2 d-inline"></i> Sign in with Google</span> </a>
             </div>
               
           </div>
@@ -22,7 +22,7 @@
         <a href="#" id="forgot_pswd">Forgot password?</a>
         <hr>
         <!-- <p>Don't have an account!</p>  -->
-        <a [routerLink]="['/register']" class="btn btn-primary btn-block" type="button" id="btn-signup">Đăng kí tài khoản</a>
+        <a [routerLink]="['/register']" class="btn btn-primary text-white btn-block" type="button" id="btn-signup">Đăng kí tài khoản</a>
         </form>
 
         <br>

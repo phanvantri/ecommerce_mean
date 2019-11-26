@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
   }
   
   public submit() {
-    console.log(this.password);
-    console.log(this.email);
+  
    
     this.auth.login(this.email, this.password)
       .pipe(first())
