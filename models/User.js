@@ -7,6 +7,7 @@ var UserSchema = new mongoose.Schema({
   linkimage: String,
   address:  String,
   phone:  String,
+  role:String,
   _id: mongoose.Schema.Types.ObjectId,
   email: { 
       type: String, 

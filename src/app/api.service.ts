@@ -9,7 +9,7 @@ const httpOptions = {
 const apiUrl = "/api";
 const apicategory="/apicategory";
 const apiproduct="/apiproduct";
-const apiorder="/apiorder";
+const apicart="/apicart";
 
 @Injectable({
   providedIn: 'root'
@@ -90,10 +90,33 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
-  getOrders(): Observable<any> {   
-    return this.http.get(apiorder, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
+  
+  getCarts(): Observable<any> {
+    return this.http.post<{}>(apicart, {id: localStorage.getItem('id')}, httpOptions)
+     .pipe(
+       map(result => {
+         console.log(result);
+         return result;
+       })
+     );
   }
+  
+  addcart(data): Observable<any> {
+    return this.http.post("/apicart/addcart", {id: localStorage.getItem('id'),data}, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  orderproduct(): Observable<any> {
+    return this.http.post<{}>("/apiorder/send", {id: localStorage.getItem('id')}, httpOptions)
+     .pipe(
+       map(result => {
+         console.log(result);
+         return result;
+       })
+     );
+  }
+
+  
   
 }

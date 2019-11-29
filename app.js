@@ -4,13 +4,18 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://root:123@ecommerce-yzccg.mongodb.net/ecommerce?retryWrites=true&w=majority')
+mongoose.connect('mongodb://localhost:27017/ecommerce')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
+// mongoose.connect('mongodb+srv://root:123@ecommerce-yzccg.mongodb.net/ecommerce?retryWrites=true&w=majority')
+//   .then(() =>  console.log('connection succesful'))
+//   .catch((err) => console.error(err));
+
 var apiRouter = require('./routes/book');
 var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 var userRouter = require('./routes/userRouter');
+var cartRouter= require('./routes/cartRouter');
 var orderRouter= require('./routes/orderRouter');
 
 var app = express();
@@ -45,10 +50,13 @@ app.use('/book-create', express.static(path.join(__dirname, 'dist/mean-angular6'
 app.use('/book-edit/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/product-detail/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/mycart', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/success', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
 app.use('/apiproduct',productRouter);
 app.use('/auth',userRouter);
+app.use('/apicart',cartRouter);
 app.use('/apiorder',orderRouter);
 
 

@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // login jwt
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './api/auth.guard';
+import {AuthAdmin} from './api/auth.admin';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -39,6 +40,8 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { InfoUserComponent } from './user-view/info-user/info-user.component';
 import { CartComponent } from './cart-view/cart/cart.component';
+import { BodyadminComponent } from './admin/bodyadmin/bodyadmin.component';
+import { OrdersuccessComponent } from './order/ordersuccess/ordersuccess.component';
 
 
 const appRoutes: Routes = [
@@ -100,6 +103,19 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],//phai dang nhap moi vao dc trang
     data: { title: 'Thông tin User' }
   }
+  ,
+  {
+    path: 'success',
+    component: OrdersuccessComponent,
+    canActivate: [AuthGuard],//phai dang nhap moi vao dc trang
+    data: { title: 'Success' }
+  },
+  {
+    path: 'admin',
+    component: BodyadminComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Thông tin Admin' }
+  }
   
 ];
 
@@ -121,8 +137,9 @@ const appRoutes: Routes = [
     HomeComponent,
     RegisterComponent,
     InfoUserComponent,
-    CartComponent
-   
+    CartComponent,
+    BodyadminComponent,
+    OrdersuccessComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -33,7 +33,8 @@ router.post("/signup", (req, res, next) => {
                 linkimage: "https://st.quantrimang.com/photos/image/072015/22/avatar.jpg", 
                 address: "Chưa có",
                 phone: "Chưa có",
-                password: hash
+                password: hash,
+                role:"user"
               });
               user
                 .save()
@@ -78,7 +79,8 @@ router.post("/signup", (req, res, next) => {
                 name: user[0].name,
                 linkimage:user[0].linkimage,
                 address:user[0].address,
-                phone:user[0].phone
+                phone:user[0].phone,
+                role:user[0].role
               },
               'todo-app-super-shared-secret',
               {
@@ -86,12 +88,14 @@ router.post("/signup", (req, res, next) => {
                 }
               
             );
+            console.log(token);
               
             return res.status(200).json({
               message: "Auth successful",
               token: token,
               username:user[0].name,
-              id: user[0]._id
+              id: user[0]._id,
+              role:user[0].role
 
             });
           }

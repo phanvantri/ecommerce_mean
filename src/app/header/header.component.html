@@ -36,6 +36,10 @@
       <li>
         <a routerLink="user-info" routerLinkActive="active" *ngIf="auth.loggedIn">Thông tin cá nhân</a>  
       </li>
+      <li>
+        <a routerLink="admin" routerLinkActive="active" *ngIf="auth.loggedCheckAdmin">Quản lý trang Admin</a>  
+      </li>
+      
       <li>   
          <a routerLink="mycart"routerLinkActive="active" *ngIf="auth.loggedIn">Giỏ hàng</a>  
         </li>

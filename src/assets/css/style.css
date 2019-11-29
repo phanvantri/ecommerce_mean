@@ -134,8 +134,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  .nav {
      list-style: none;
       *zoom: 1;
-      background:#e44f2b;
-      border-bottom:1px solid #DB3C15;
+      /* background:#e44f2b;
+      border-bottom:1px solid #DB3C15; */
  }
  .nav:before,
  .nav:after {

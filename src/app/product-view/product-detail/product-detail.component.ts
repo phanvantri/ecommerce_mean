@@ -23,5 +23,15 @@ export class ProductDetailComponent implements OnInit {
       this.product_detail = data;
     });
   }
+  addcart(){
+    this.api.addcart(this.product_detail)
+    .subscribe(res => {
+       
+        this.router.navigate(['/mycart']);
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  
 
 }

@@ -49,12 +49,14 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string,username:string,id:string}>('/auth/login', {email: email, password: password})
+    return this.http.post<{token: string,username:string,id:string,role:string}>('/auth/login', {email: email, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
           localStorage.setItem('user', result.username);
           localStorage.setItem('id', result.id);
+          localStorage.setItem('role',result.role);
+
          
           return true;
         })
@@ -83,10 +85,15 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
     localStorage.removeItem('id');
+    localStorage.removeItem('role');
   }
 
   public get loggedIn(): boolean {
   
     return (localStorage.getItem('access_token') !== null);
+  }
+  public get loggedCheckAdmin(): boolean {
+  
+    return (localStorage.getItem('role') === "admin");
   }
 }

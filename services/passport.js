@@ -36,7 +36,8 @@ passport.use(new FacebookStrategy({
         facebookId: profile.id,
         name: profile.displayName,
         password:accessToken,
-        linkimage: "https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"
+        linkimage: "https://st.quantrimang.com/photos/image/072015/22/avatar.jpg",
+        role:"user"
       }).save();
 
       done(null, user);
@@ -61,7 +62,8 @@ passport.use(
         email: profile.emails[0].value,
         name: profile.name.familyName + ' ' + profile.name.givenName,
         password: accessToken,
-        linkimage:"https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"
+        linkimage:"https://st.quantrimang.com/photos/image/072015/22/avatar.jpg",
+        role:"user"
       }).save();
 
       done(null, user);

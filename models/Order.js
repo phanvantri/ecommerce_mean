@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+ObjectId = require('mongodb').ObjectID;
 var OrderSchema = new mongoose.Schema({
     id: String,
     name: String,
@@ -7,8 +8,9 @@ var OrderSchema = new mongoose.Schema({
     dateorder: Date,
     price: String,
     note: String,
-    status: String
-    
+    status: String,
+    product: ObjectId,
+    user:ObjectId 
   });
   
   module.exports = mongoose.model('orders', OrderSchema);
