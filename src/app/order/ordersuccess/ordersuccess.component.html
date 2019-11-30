@@ -1,11 +1,22 @@
 <h4 *ngIf="error">{{error}}</h4>
 <div id="logreg-forms">
     <form class="form-signin" >
-        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Bạn đã đặt hàng thành công!!!! Vui lòng kiểm tra Mail để xem chi tiết đơn hàng</h1>
+      <div class="row">
+        <div class="col-md-12">
+        <h3 class="mt-1 mb-4 font-weight-normal text-center" >Bạn đã đặt hàng thành công!!!</h3>
+      </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+          <h6 class=" mb-3 font-weight-normal text-center text-muted">Vui lòng kiểm tra Mail để xác nhận đơn hàng</h6>
+        </div>
+        </div>
+
         <div class="social-login">
           <div class="row">
  
-            <div class="col-md-6 pl-0">
+            <div class="col-md-6 offset-md-3 pl-0">
                 <a (click)="callback()" class="btn google-btn social-btn" type="button"><span><i class="fa fa-google mr-2 d-inline"></i> Trở lại</span> </a>
             </div>
               

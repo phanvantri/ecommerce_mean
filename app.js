@@ -52,6 +52,9 @@ app.use('/product-detail/:id', express.static(path.join(__dirname, 'dist/mean-an
 app.use('/mycart', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/success', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qluser', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qlproduct', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qlorder', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
 app.use('/apiproduct',productRouter);

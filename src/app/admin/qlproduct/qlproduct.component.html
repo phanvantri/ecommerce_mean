@@ -80,9 +80,9 @@
     </div>
   </form>
   <ul class="nav menu" id="nav-1">
-    <li id="li-1" ><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Quản lý User</a></li>
-    <li id="li-1"><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Quản lý sản phẩm</a></li>
-    <li id="li-1"><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý đơn hàng</a></li>
+    <li id="li-1" ><a [routerLink]="['admin/qluser']"><em class="fa fa-dashboard">&nbsp;</em> Quản lý User</a></li>
+    <li id="li-1"><a [routerLink]="['admin/qlproduct']"><em class="fa fa-calendar">&nbsp;</em> Quản lý sản phẩm</a></li>
+    <li id="li-1"><a [routerLink]="['admin/qlorder']"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý đơn hàng</a></li>
  
     <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
   </ul>
@@ -94,7 +94,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          Danh sách User
+          Danh sách Sản phẩm
           <ul class="pull-right panel-settings panel-button-tab-right">
             <li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
               <em class="fa fa-cogs"></em>

@@ -42,6 +42,9 @@ import { InfoUserComponent } from './user-view/info-user/info-user.component';
 import { CartComponent } from './cart-view/cart/cart.component';
 import { BodyadminComponent } from './admin/bodyadmin/bodyadmin.component';
 import { OrdersuccessComponent } from './order/ordersuccess/ordersuccess.component';
+import { QlproductComponent } from './admin/qlproduct/qlproduct.component';
+import { QlorderComponent } from './admin/qlorder/qlorder.component';
+import { QluserComponent } from './admin/qluser/qluser.component';
 
 
 const appRoutes: Routes = [
@@ -116,6 +119,27 @@ const appRoutes: Routes = [
     canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
     data: { title: 'Thông tin Admin' }
   }
+  ,
+  {
+    path: 'admin/qluser',
+    component: QluserComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Danh sách User' }
+  }
+  ,
+  {
+    path: 'admin/qlproduct',
+    component: QlproductComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Danh sách San phẩm' }
+  }
+  ,
+  {
+    path: 'admin/qlorder',
+    component: QlorderComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Danh sách User' }
+  }
   
 ];
 
@@ -139,7 +163,10 @@ const appRoutes: Routes = [
     InfoUserComponent,
     CartComponent,
     BodyadminComponent,
-    OrdersuccessComponent
+    OrdersuccessComponent,
+    QlproductComponent,
+    QlorderComponent,
+    QluserComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

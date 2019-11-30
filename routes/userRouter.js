@@ -134,18 +134,7 @@ router.post("/signup", (req, res, next) => {
       if (err) return next(err);
       res.json(user);
     });
-    // User.find({ email: req.body.email })
-    // .exec()
-    // .then(user => {
-    //   res.json(user);
-     
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    //   res.status(500).json({
-    //     error: err
-    //   });
-    // });
+  
   });
 
   module.exports = router;
