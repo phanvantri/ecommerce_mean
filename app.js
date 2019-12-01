@@ -17,6 +17,7 @@ var productRouter = require('./routes/productRouter');
 var userRouter = require('./routes/userRouter');
 var cartRouter= require('./routes/cartRouter');
 var orderRouter= require('./routes/orderRouter');
+var ordersuccessRouter= require('./routes/orderSuccessRouter');
 
 var app = express();
 //test login google
@@ -53,7 +54,11 @@ app.use('/mycart', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/success', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin/qluser', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qluser/create', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qluser/edit', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin/qlproduct', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qlproduct/create', express.static(path.join(__dirname, 'dist/mean-angular6')));
+app.use('/admin/qlproduct/edit', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin/qlorder', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
@@ -61,7 +66,8 @@ app.use('/apiproduct',productRouter);
 app.use('/auth',userRouter);
 app.use('/apicart',cartRouter);
 app.use('/apiorder',orderRouter);
-
+app.use('/apiuser',userRouter);
+app.use('/apiordersuccess',ordersuccessRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

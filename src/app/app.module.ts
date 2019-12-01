@@ -10,6 +10,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // login jwt
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './api/auth.guard';
@@ -45,7 +46,11 @@ import { OrdersuccessComponent } from './order/ordersuccess/ordersuccess.compone
 import { QlproductComponent } from './admin/qlproduct/qlproduct.component';
 import { QlorderComponent } from './admin/qlorder/qlorder.component';
 import { QluserComponent } from './admin/qluser/qluser.component';
-
+import { QluserCreateComponent } from './admin/qluser/qluser-create/qluser-create.component';
+import { QluserEditComponent } from './admin/qluser/qluser-edit/qluser-edit.component';
+import { QlproductCreateComponent } from './admin/qlproduct/qlproduct-create/qlproduct-create.component';
+import { QlproductEditComponent } from './admin/qlproduct/qlproduct-edit/qlproduct-edit.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const appRoutes: Routes = [
   {
@@ -140,11 +145,39 @@ const appRoutes: Routes = [
     canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
     data: { title: 'Danh sách User' }
   }
-  
+  ,
+  {
+    path: 'admin/qluser/create',
+    component: QluserCreateComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Thêm User' }
+  }
+  ,
+  {
+    path: 'admin/qluser/edit',
+    component: QluserEditComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Cập nhật User' }
+  }
+  ,
+  {
+    path: 'admin/qlproduct/create',
+    component: QlproductCreateComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Danh sách San phẩm' }
+  }
+  ,
+  {
+    path: 'admin/qlproduct/edit',
+    component: QlproductEditComponent,
+    canActivate: [AuthAdmin],//phai dang nhap moi vao dc trang
+    data: { title: 'Danh sách San phẩm' }
+  }
 ];
 
 @NgModule({
   declarations: [
+
     AppComponent,
     BookComponent,
     BookDetailComponent,
@@ -166,9 +199,14 @@ const appRoutes: Routes = [
     OrdersuccessComponent,
     QlproductComponent,
     QlorderComponent,
+    QluserCreateComponent, 
+    QluserEditComponent , 
+    QlproductCreateComponent, 
+    QlproductEditComponent, 
     QluserComponent
   ],
   imports: [
+
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
