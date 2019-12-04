@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  orders={};
+  orders:any = []; 
   sum_price=+"0";
+  checkcart: boolean = false;
  
   dataSource = new OrdersDataSource(this.api);
   constructor(private api: ApiService,private router: Router) { }
@@ -19,21 +20,57 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.api.getCarts()
     .subscribe(res => {
-      this.orders = res;    
+      this.orders = res;  
+      console.log(this.orders);  
       let i=0;
       for(let item in this.orders){
         this.sum_price+=Number(this.orders[i].price);
         i++;
       }
+      if (this.orders && this.orders.length >0){this.checkcart = true;}
       console.log(this.sum_price);
     }, err => {
       console.log(err);
     });
     
   }
-  myfunc($event){
-    alert("Dat hang thanh cong");
+  myfunc(sum_price){
+    alert("Thành công!!!!");
+    this.api.orderproduct(sum_price)
+    .subscribe(data => {
+    });
     this.router.navigateByUrl('/success');
+  }
+  deletecart(id){
+   
+  
+    this.api.deletecart(id)
+    .subscribe(res => {
+        alert("Đã xóa sản phẩm ra giỏ hàng thành công!!!")
+
+        this.router.navigate(['/mycart']);
+      }, (err) => {
+        console.log(err);
+      }
+    );
+    this.sum_price=+"0";
+    this.api.getCarts()
+    .subscribe(res => {
+      this.orders = res;  
+      console.log(this.orders);  
+      let i=0;
+      for(let item in this.orders){
+        this.sum_price+=Number(this.orders[i].price);
+        i++;
+      }
+      if (this.orders && this.orders.length >0){this.checkcart = true;}
+      else{
+        this.checkcart = false;
+      }
+      console.log(this.sum_price);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

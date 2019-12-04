@@ -23,7 +23,8 @@
                                                   <input class="form-control-sm text-center ml-1 mr-1" type="number"  value="1" maxlength="3" size="3" min="1" style="width: 50px;" >  
                                               </td>
                                               <td class="text-right">{{item.price}}</td>
-                                              <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                              <td class="text-right"><a type="button" class="btn btn-danger btn-block" (click)="deletecart(item._id)"><i class="fa fa-trash"></i></a> 
+                                             </td>
                                           </tr>
                                           
                                         </tbody>
@@ -45,7 +46,7 @@
                                 <strong class="float-right">{{sum_price}} đồng.</strong>
                               </p>
                             </div><br>
-                            <a type="button" class="btn btn-danger btn-block" (click)="myfunc($event)">Tiến hành đặt hàng</a>
+                            <a type="button" class="btn btn-danger btn-block" (click)="myfunc(sum_price)" *ngIf="checkcart">Tiến hành đặt hàng</a>
     
                             
                             </div>

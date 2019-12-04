@@ -62,8 +62,8 @@ export class AuthService {
         })
       );
   }
-  signup(email: string, password: string,name: string): Observable<boolean> {
-    return this.http.post<{token: string}>('/auth/signup', {email: email, password: password, name:name})
+  signup(email: string, password: string,name: string, phone: string, address: string): Observable<boolean> {
+    return this.http.post<{token: string}>('/auth/signup', {email: email, password: password, name:name, phone:phone, address:address})
       .pipe(
         map(result => {        
           return true;

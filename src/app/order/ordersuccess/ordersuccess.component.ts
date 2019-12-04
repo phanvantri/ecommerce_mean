@@ -12,13 +12,10 @@ export class OrdersuccessComponent implements OnInit {
 
   constructor(private api: ApiService,private router: Router) { } 
   ngOnInit() {
-    this.orderproduct();
+    
   }
   orderproduct() {
-    this.api.orderproduct()
-    .subscribe(data => {
-      
-    });
+    
   }
   callback(){
     this.router.navigateByUrl('/');

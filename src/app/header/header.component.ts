@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
-  info={};
-  username={};
+  info:any = [];
+  username:any = [];
   logout() {
     this.auth.logout();
-    this.router.navigate(['login']);
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit() {

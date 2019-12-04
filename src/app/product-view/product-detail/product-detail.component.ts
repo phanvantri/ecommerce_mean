@@ -9,7 +9,7 @@ import { ApiService } from '../../api.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product_detail= {};
+  product_detail:any = []; 
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
   ngOnInit() {

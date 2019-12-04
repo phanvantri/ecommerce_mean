@@ -80,12 +80,12 @@
     </div>
   </form>
   <ul class="nav menu" id="nav-1">
-    <li id="li-1" ><a routerLink="../../admin"><em class="fa fa-dashboard">&nbsp;</em> Trang chủ</a></li>
-    <li id="li-1" ><a routerLink="../../admin/qluser"><em class="fa fa-dashboard">&nbsp;</em> Quản lý User</a></li>
-    <li id="li-1"><a routerLink="../../admin/qlproduct"><em class="fa fa-calendar">&nbsp;</em> Quản lý sản phẩm</a></li>
-    <li id="li-1"><a routerLink="../../admin/qlorder"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý đơn hàng</a></li>
+    <li id="li-1" ><a class="border-0" routerLink="../../admin" ><em class="fa fa-dashboard">&nbsp;</em> Trang chủ</a></li>
+    <li id="li-1" ><a class="border-0" routerLink="../../admin/qluser"><em class="fa fa-dashboard">&nbsp;</em> Quản lý User</a></li>
+    <li id="li-1"><a class="border-0" routerLink="../../admin/qlproduct"><em class="fa fa-calendar">&nbsp;</em> Quản lý sản phẩm</a></li>
+    <li id="li-1"><a class="border-0" routerLink="../../admin/qlorder"><em class="fa fa-bar-chart">&nbsp;</em> Quản lý đơn hàng</a></li>
  
-    <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    <li><a class="border-0" (click)="logout()"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
   </ul>
 </div><!--/.sidebar-->
   
@@ -128,37 +128,47 @@
     
                   <table class="table table-bordered table-striped " >
                     <tr>
-                      <th>  
-                          <div class="form-check">
-                              <input type="checkbox" class="form-check-input m-auto" id="exampleCheck1">
-                          </div>
-                      </th>
-                      <th>STT</th>
+                      
+                      <th>MÃ ORDER</th>
                       <th>TÊN</th>
-                      <th>ID</th>
                       <th>TÊN SẢN PHẨM</th>
                       <th>GIÁ</th>
                       <th>SỐ LƯỢNG</th>
-                      <th>HÌNH ẢNH</th>
+                      <th>NGƯỜI ĐẶT</th>
+                      <th>ĐỊA CHỈ GIAO HÀNG</th>
+                      <th>SỐ ĐIỆN THOẠI</th>
+                      <th>TỔNG TIỀN</th>
+                      <th>TÌNH TRẠNG</th>
+                      <th>GIAO HÀNG</th>
+                
                     </tr>
-                    <tr *ngFor="let item of orders">
-                      <td>  
-                          <div class="form-check">
-                              <input type="checkbox" class="form-check-input m-auto" id="exampleCheck1">
-                          </div>
+                    <tr *ngFor="let item of collection.data | paginate: config">
+                    
+                      <td>{{item._id}}</td>
+                      <td>{{item.name}}</td>
+                      <td>      
+                          <ul>
+                              <li *ngFor="let data of item.product">- {{data.name}}</li>
+                            </ul>
+                            
+                      </td>
+                      <td> <ul>
+                          <li *ngFor="let data of item.product">{{data.price}}</li>
+                        </ul>
                       </td>
                       <td>1</td>
-                      <td>Nguyễn Văn A</td>
-                      <td>link</td>
-                      <td>A@gmail.com</td>
-                      <td>123456</td>
-                      <td>123 số 1</td>
-                      <td>012351424</td>
-                      <td></td>
+                      <td>{{item.user.name}}</td>
+                      <td>{{item.user.address}}</td>
+                      <td>{{item.user.phone}}</td>
+                      <td>{{item.sum_price}}</td>
+                      <td>{{item.status}}</td>
+                      <td>
+                        <a href="" class="btn btn-warning ml-3"><i class="fas fa-coffee"></i></a>                   
+                      </td>
                     </tr>
                     
                   </table>
-          
+                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                 </div>
               </div>
             </div><!--/.row-->

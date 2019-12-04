@@ -4,14 +4,13 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/ecommerce')
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
-// mongoose.connect('mongodb+srv://root:123@ecommerce-yzccg.mongodb.net/ecommerce?retryWrites=true&w=majority')
+// mongoose.connect('mongodb://localhost:27017/ecommerce')
 //   .then(() =>  console.log('connection succesful'))
 //   .catch((err) => console.error(err));
+mongoose.connect('mongodb://meanecommerce:Ec3p5c_R!DAF@den1.mongo1.gear.host:27001/meanecommerce', {useNewUrlParser: true})
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 
-var apiRouter = require('./routes/book');
 var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 var userRouter = require('./routes/userRouter');
@@ -44,11 +43,7 @@ app.use(express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/login', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/register', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/user-info', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/books', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/category', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/book-details/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/book-create', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/book-edit/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/product-detail/:id', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/mycart', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/success', express.static(path.join(__dirname, 'dist/mean-angular6')));
@@ -60,7 +55,6 @@ app.use('/admin/qlproduct', express.static(path.join(__dirname, 'dist/mean-angul
 app.use('/admin/qlproduct/create', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin/qlproduct/edit', express.static(path.join(__dirname, 'dist/mean-angular6')));
 app.use('/admin/qlorder', express.static(path.join(__dirname, 'dist/mean-angular6')));
-app.use('/api', apiRouter);
 app.use('/apicategory',categoryRouter);
 app.use('/apiproduct',productRouter);
 app.use('/auth',userRouter);

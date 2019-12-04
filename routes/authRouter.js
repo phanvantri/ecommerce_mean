@@ -16,7 +16,7 @@ module.exports = (app) => {
       },
       'todo-app-super-shared-secret',
       {
-        expiresIn: "1h"
+        expiresIn: '2h'
         }
       
     );
@@ -49,7 +49,7 @@ module.exports = (app) => {
     },
     'todo-app-super-shared-secret',
     {
-      expiresIn: "1h"
+      expiresIn: '2h'
       }
     
   );

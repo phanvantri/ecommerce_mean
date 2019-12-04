@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoryComponent implements OnInit {
 
-   categorys = {};
+   categorys: any = []; 
    displayedColumns = ['name', 'note'];
  
   dataSource = new CategoryDataSource(this.api);

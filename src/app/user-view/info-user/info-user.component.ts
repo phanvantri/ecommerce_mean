@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class InfoUserComponent implements OnInit {
 
+  info:any = []; 
   constructor(private auth: AuthService, private router: Router) { }
-  info={};
+  
 
   ngOnInit() {
     this.getInforUser();

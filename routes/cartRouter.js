@@ -28,6 +28,15 @@ router.get('/:id', checkAuth(1),function(req, res, next) {
   
   });
 });
+
+/* DELETE Cart */
+router.delete('/:id', function(req, res, next) {
+  console.log("XOa cart");
+  Order.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 router.post("/addcart",checkAuth(1), (req, res, next) => {
   console.log("vao add cart");
   console.log(req.body);
@@ -35,7 +44,7 @@ router.post("/addcart",checkAuth(1), (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.data.name,
     linkimage: req.body.data.linkimage, 
-    dateorder: "2019-10-09T17:00:00.000Z",
+    dateorder: Date.now(),
     price: req.body.data.price,
     product:new ObjectId(req.body.data._id),
     user: new ObjectId(req.body.id)

@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   public password: string;
   public name: string;
   public error: string;
+  public phone: string;
+  public address: string;
 
   constructor(private auth: AuthService,private router: Router) { }
 
@@ -20,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
   public submit() {
    
-    this.auth.signup(this.email, this.password,this.name)
+    this.auth.signup(this.email, this.password,this.name,this.phone, this.address)
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['/login']),

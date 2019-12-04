@@ -4,7 +4,9 @@ var OrderSuccessSchema = new mongoose.Schema({
     id: String,
     name: String,
     product: Object,
-    user:ObjectId
+    user:Object,
+    status:Boolean,
+    sum_price:String
   });
   
   module.exports = mongoose.model('ordersuccesses', OrderSuccessSchema);

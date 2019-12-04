@@ -25,14 +25,17 @@ var transporter = nodemailer.createTransport({
 router.post('/send',checkAuth(1),async function(req, res, next) {
 
 
+  console.log(req.body);
    var result=await Order.find({ "user": new ObjectId(req.body.id)});
    var user= await User.findById(req.body.id );
  
    const orderSuccess = new OrderSuccess({
     _id: new mongoose.Types.ObjectId(),
-    name: "test1",
+    name: "Đơn hàng:"+Date.now(),
     product: result, 
-    user:req.body.id
+    user:user,
+    status:false,
+    sum_price:req.body.sum_price
   });
   let nameProduct="";
   orderSuccess.product.map(item=>
@@ -61,7 +64,7 @@ router.post('/send',checkAuth(1),async function(req, res, next) {
     to: user.email,
     subject: 'Mail xác nhận đơn hàng',
     text: 'You recieved message from ' + req.body.email,
-    html: '<p>Chúc mừng bạn đã đặt hàng thành công!!!</b><ul><li>Username:' + user.name + '</li><li>Địa chỉ nhận hàng:' + user.address + '</li><li>Số điện thoại:' + user.phone + '</li>'+nameProduct+'</ul>'
+    html: '<p>Chúc mừng bạn đã đặt hàng thành công!!! Tổng số tiền phải thành toán là: '+req.body.sum_price +'đồng.</b><ul><li>Username:' + user.name + '</li><li>Địa chỉ nhận hàng:' + user.address + '</li><li>Số điện thoại:' + user.phone + '</li>'+nameProduct+'</ul>'
     }
     transporter.sendMail(mainOptions, function(err, info){
         if (err) {

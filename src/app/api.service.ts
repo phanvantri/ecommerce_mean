@@ -66,41 +66,21 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  getBooks(): Observable<any> {   
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
 
-  getBook(id: string): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.get(url, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
+  addUser(data):Observable<any>{
+    return this.http.post('apiuser/adduser',data,httpOptions)
+    .pipe(
+      catchError(this.handleError)
+      );
   }
-
-  postBook(data): Observable<any> {
-    return this.http.post(apiUrl, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
+  addProduct(data):Observable<any>{
+    return this.http.post('apiproduct/admin/addproduct',data,httpOptions)
+    .pipe(
+      catchError(this.handleError)
       );
   }
 
-  updateBook(id: string, data): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.put(url, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
 
-  deleteBook(id: string): Observable<{}> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.delete(url, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
   
   getCarts(): Observable<any> {
     return this.http.post<{}>(apicart, {id: localStorage.getItem('id')}, httpOptions)
@@ -118,8 +98,8 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
-  orderproduct(): Observable<any> {
-    return this.http.post<{}>("/apiorder/send", {id: localStorage.getItem('id')}, httpOptions)
+  orderproduct(sum_price): Observable<any> {
+    return this.http.post<{}>("/apiorder/send", {id: localStorage.getItem('id'),sum_price}, httpOptions)
      .pipe(
        map(result => {
          console.log(result);
@@ -127,7 +107,36 @@ export class ApiService {
        })
      );
   }
-
-  
+  deletecart(id: string): Observable<{}> {
+    const url = `apicart/${id}`;
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  deleteproduct(id: string): Observable<{}> {
+    const url = `apiproduct/admin/deleteproduct/${id}`;
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  deleteuser(id: string): Observable<{}> {
+    const url = `apiuser/admin/deleteuser/${id}`;
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  getUserDetails(): Observable<any> {
+    
+    return this.http.post<{}>('/auth/infor', {id: localStorage.getItem('id')})
+     .pipe(
+       map(result => {
+         console.log(result);
+         return result;
+       })
+     );
+ }
   
 }

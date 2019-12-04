@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../api/auth.service';
 @Component({
   selector: 'app-qlproduct',
   templateUrl: './qlproduct.component.html',
@@ -10,22 +11,64 @@ import { Observable } from 'rxjs';
 })
 export class QlproductComponent implements OnInit {
 
-  products={};
-  config: any;
-  collection = { count: 60, data: [] };
-  dataSource = new QLProductDataSource(this.api);
-  constructor(private api: ApiService) { }
+  products: any = [];
 
-  ngOnInit() {
-    this.api.getProduct()
+  dataSource = new QLProductDataSource(this.api);
+  config: any;
+  collection = { data: [] };
+
+  constructor(private api: ApiService, private router: Router,private auth: AuthService) {
+    
+    this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.data.length//bat buoc phai = nhau
+    };
+  }
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
+  }
+  pageChanged(event) {
+    this.config.currentPage = event;
+  }
+  updateProduct(data){
+    this.router.navigateByUrl('/admin/qlproduct/edit');
+    
+  }
+
+  deleteproduct(id){
+    this.api.deleteproduct(id)
     .subscribe(res => {
-      console.log(res);
-      this.products = res;
-    }, err => {
-      console.log(err);
-    });
+        alert("Đã xóa sản phẩm thành công!!!")  
+      }, (err) => {
+        console.log(err);
+      }
+    );
+    this.api.getProduct()
+      .subscribe(res => {
+       
+        this.collection.data = res;
+    
+       
+      }, err => {
+        console.log(err);
+      });
+  }
+  ngOnInit() {
+   
+    this.api.getProduct()
+      .subscribe(res => {
+       
+        this.collection.data = res;
+    
+       
+      }, err => {
+        console.log(err);
+      });
   }
   
+
 
 }
 export class QLProductDataSource extends DataSource<any> {
